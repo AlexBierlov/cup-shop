@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@300;400&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="style.css">
+   <title>Cup</title>
+</head>
+<body>
+   <div class="bg"></div>
+   <div id="wrap" class="wrapper">
+      <header class="header">
+         <div class="container">
+            <div class="header__inner">
+               <div class="logo">
+                  <img src="img/logo.png" alt="" class="header__logo">
+               </div>
+               <div class="header__right">                  
+                  <div id="cartWinOpen"  class="cart">
+                     <img src="img/icons/shopping-cart.png" alt="">
+                  </div>                  
+                  <div class="prof">
+                     <div class="prof__photo">
+                        <img id="profImg" src="" alt="">
+                     </div>
+                     <div id="profName" class="prof__name">                           
+                     </div>
+                  </div>                  
+                  <div class="auth">     
+                     <a href="#" id="enterAuth"  class="auth__item">
+                        Вход
+                     </a>
+                     <div id="regAuth"  class="auth__item">
+                        Регистрация
+                     </div>                    
+                  </div>
+               </div>
+            </div>            
+         </div>         
+      </header>
+
+      <h1 class="title">Наши товары</h1>
+
+      <main class="main">
+         <div class="container">
+            <div id="mainInner" class="main__inner">               
+               <div  class="main__item" id="item1">                     
+                  <img id="pic1" src="img/cups/1.jpg" alt="" class="main__img">
+                  <div class="item__describe">
+                     <div class="item__name">
+                        чашка
+                     </div>
+                     <div class="item__price">
+                        80 грн
+                     </div>
+                     <button name="addToCart" class="btn to__cart" type="button">В корзину</button>        
+                  </div>               
+               </div>
+               <div id="item2" class="main__item">                  
+                  <img src="img/cups/2.jpg" alt="" class="main__img">
+                  <div class="item__describe">
+                     <div class="item__name">
+                        чашка
+                     </div>
+                     <div class="item__price">
+                        100 грн
+                     </div>
+                     <button class="btn to__cart" type="button">В корзину</button>
+                  </div>                                    
+               </div>
+               <div id="item3" class="main__item">                  
+                  <img src="img/cups/3.jfif" alt="" class="main__img">
+                  <div class="item__describe">
+                     <div class="item__name">
+                        чашка
+                     </div>
+                     <div class="item__price">
+                        120 грн
+                     </div>
+                     <button class="btn to__cart" type="button">В корзину</button>
+                  </div>                                    
+               </div>
+               <div id="item4" class="main__item">                  
+                  <img src="img/cups/4.jfif" alt="" class="main__img">
+                  <div class="item__describe">
+                     <div class="item__name">
+                        чашка
+                     </div>
+                     <div class="item__price">
+                        90 грн
+                     </div>
+                     <button class="btn to__cart" type="button">В корзину</button>
+                  </div>                                    
+               </div>           
+                              
+                              
+            </div> 
+            <div id="addCardNew" class="main__item">
+               <div class="plus">
+                  <img class="plus" src="img/icons/add1.svg" alt="">
+               </div>                 
+               <div class="btn">
+                  Добавить товар
+               </div>                  
+            </div>           
+         </div>         
+      </main>
+
+      
+   </div>
+
+   <!-- Register -->
+
+   <div id="reg" class="popap" style="display: none;">         
+      <div class="container">            
+         <div id="form" class="form" >               
+            <div id="closeReg" class="close">
+               <!-- <span class="span span1"></span>
+               <span class="span span2"></span> -->
+            </div>               
+            <h2 class="form__name">
+               Регистрация
+            </h2>
+            <form action="">
+               <div class="form__item">
+                  <input id="regName" name="reg__input" type="text" placeholder="Имя">
+                  <p name="pName" class="form__p">мин. 3 символа</p>
+               </div>
+               <div class="form__item">
+                  <input id="regSurname"  name="reg__input" type="text" placeholder="Фамилия">
+                  <p name="pSurname" class="form__p">мин. 3 символа</p>
+               </div>
+               <div class="form__item">
+                  <input id="regMail"  name="reg__input" type="text" placeholder="e-mail">
+                  <p name="pMail" class="form__p">Формат E-mail@domain.com</p>
+               </div>
+               <div class="form__item">
+                  <div class="reg__img">
+                     <img id="output" src="" alt="">
+                  </div>
+                  
+                  <input class="reg__photo" id="fr" type="file">
+                  
+               </div>
+               <div class="form__item">
+                  <input id="regPass"  name="reg__input" type="password" placeholder="Пароль">
+                  <p name="pPass" class="form__p">Латинскі літери та цифри,<br> min одна цифра, min одна <br> велика літера, min 6 символів</p>
+               </div>
+               <div class="form__item">
+                  <input id="regPassRepeat" name="reg__input" type="password" placeholder="Повторите пароль">
+                  <p name="pPassRepeat" class="form__p">введите такой же пароль</p>
+               </div>
+            </form>
+            <button id="addUserBtn" type="button" class="btn">Регистрация</button>
+            <div class="foot">
+               <div class="foot__left">
+                  Есть аккаунт?
+               </div>
+               <div class="foot__right">
+                  <a id="regEnter" href="#">Войти</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- Authorization -->
+
+   <div id="auth" class="popap">
+      <div class="container">
+         <div class="form">               
+            <div id="authorizationClose" class="close">
+               <!-- <span class="span span1"></span>
+               <span class="span span2"></span> -->
+            </div>              
+            <h2 class="form__name">
+               Авторизация
+            </h2>
+            <form action="">
+               <div class="form__item">
+                  <input name="authInput" id="authMail" type="text" placeholder="e-mail">
+                  <p name="pMail1" class="form__p">Формат E-mail@domain.com</p>
+               </div>
+               <div class="form__item">
+                  <input name="authInput" id="authPass" type="password" placeholder="Пароль">
+                  <p name="pPass1" class="form__p">Латинскі літери та цифри,<br> min одна цифра, min одна <br> велика літера, min 6 символів</p>
+               </div>
+               <a href="">Забыли пароль?</a>
+            </form>
+            <button id="authBtn" type="button" class="btn">Войти</button>
+            <div class="foot">
+               <div class="foot__left">
+                  Нет аккаунта?
+               </div>
+               <div class="foot__right">
+                  <a id="authRegBtn" href="#">Регистрация</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+
+   
+   <!-- add card -->
+
+   <div id="addCard" class="popap">
+      <div class="container">
+         <div class="form">
+            <div id="addCardClose" class="close">
+               <!-- <span class="span span1"></span>
+               <span class="span span2"></span> -->
+            </div>
+            <h2 class="form__name">
+               Добавить товар
+            </h2>
+            <div class="add__img">
+               <button type="button" class="btn">Выбрать изображение</button>               
+            </div >
+            <div class="form__item">
+               <input name="name" type="text" placeholder="Наименование">
+            </div>
+            <div class="form__item">
+               <input placeholder="Цвет"name="color" type="text">
+            </div>
+            <div class="form__item">
+               <input placeholder="Материал" name="material" type="text">
+            </div>
+            <div class="form__item">
+               <input placeholder="Цена" name="price" type="text">
+            </div>
+            <button type="button" class="btn">Добавить</button>
+         </div>            
+      </div>
+   </div>
+   
+
+   <!-- Profile -->
+
+   <div id="prof" class="popap">
+         <div class="container">
+            <div class="form">
+               <label for="profClose">
+                  <div id="profileClose" class="close">
+                     <!-- <span class="span span1"></span>
+                     <span class="span span2"></span> -->
+                  </div>
+               </label>
+               <h2 class="form__name">
+                  Мой профиль
+               </h2>
+               <div class="form__item">
+                  <div id="myName" class="name">Имя: </div>
+               </div>
+               <div class="form__item">
+                  <div id="mySurname" class="sername">Фамилия: </div>
+               </div>
+               <div class="form__item">
+                  Фотография
+                  <img id="output1" class="profile__photo" src="" alt="">
+                  <input id="cp" type="file" value="изменить фото">
+               </div>
+               <div class="form__item">
+                  <div id="myMail" class="email">E-mail: </div>
+               </div>
+               <div class="form__item">
+                  <div class="adress">Адресс: </div>
+               </div>
+               <div class="form__item">
+                  <div class="phone">Телефон: </div>
+               </div>
+               <button type="button" class="btn">Редактировать</button>
+               <button id="exitBtn" type="button" class="btn">Выйти</button>
+            </div>
+         </div>
+   </div>
+   
+
+   <!-- Product1 -->
+
+   <div id="product1" class="product__card product__card0">
+      <div class="container">
+         <div class="form form__product">               
+            <div id="product1Close" class="close">
+               <!-- <span class="span span1"></span>
+               <span class="span span2"></span> -->
+            </div>               
+            <div class="product__img">
+               <img src="img/cups/1.jpg" alt="">
+            </div>
+            <div class="bord"></div>
+            <div class="product__describe">
+               <div class="describe">  <p>Название товара: <span> Доброго вечора</span></p> 
+               </div>
+               <div class="describe">
+                  <p>Материал: <span> Фарфор</span></p>
+               </div>
+               <div class="describe">
+                  <p>Цена: <span> 100 грн</span></p>
+               </div>
+               <button type="button" class="btn">Купить</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- Product2 -->
+
+   <div id="product2" class="product__card product__card1">
+      <div class="container">
+         <div class="form form__product">               
+            <div id="product2Close" class="close">
+               <!-- <span class="span span1"></span>
+               <span class="span span2"></span> -->
+            </div>               
+            <div class="product__img">
+               <img src="img/cups/2.jpg" alt="">
+            </div>
+            <div class="bord"></div>
+            <div class="product__describe">
+               <div class="describe">  <p>Название товара: <span> Чашка с двойным дном</span></p> 
+               </div>
+               <div class="describe">
+                  <p>Материал: <span> Стекло</span></p>
+               </div>
+               <div class="describe">
+                  <p>Цена: <span> 100 грн</span></p>
+               </div>
+               <button type="button" class="btn">Купить</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- Product3 -->
+
+   <div id="product3" class="product__card product__card2">
+      <div class="container">
+         <div class="form form__product">               
+            <div id="product3Close" class="close">
+               <!-- <span class="span span1"></span>
+               <span class="span span2"></span> -->
+            </div>               
+            <div class="product__img">
+               <img src="img/cups/3.jfif" alt="">
+            </div>
+            <div class="bord"></div>
+            <div class="product__describe">
+               <div class="describe">  <p>Название товара: <span> Патриотическая</span></p> 
+               </div>
+               <div class="describe">
+                  <p>Материал: <span> Фарфор</span></p>
+               </div>
+               <div class="describe">
+                  <p>Цена: <span> 120 грн</span></p>
+               </div>
+               <button type="button" class="btn">Купить</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <!-- Product4 -->
+
+   <div id="product4" class="product__card product__card3">
+      <div class="container">
+         <div class="form form__product">               
+            <div id="product4Close" class="close">
+               <!-- <span class="span span1"></span>
+               <span class="span span2"></span> -->
+            </div>               
+            <div class="product__img">
+               <img src="img/cups/4.jfif" alt="">
+            </div>
+            <div class="bord"></div>
+            <div class="product__describe">
+               <div class="describe">  <p>Название товара: <span> Украина</span></p> 
+               </div>
+               <div class="describe">
+                  <p>Материал: <span> Стекло</span></p>
+               </div>
+               <div class="describe">
+                  <p>Цена: <span> 90 грн</span></p>
+               </div>
+               <button type="button" class="btn">Купить</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- Cart__window -->
+
+   <div id="cart" class="popap">
+      <div class="container">
+         
+         <div id="cartInner" class="form">               
+            <div id="cartClose" class="close">
+               <!-- <span class="span span1"></span>
+               <span class="span span2"></span> -->
+            </div>               
+            <h2 class="form__name">
+               Корзина
+            </h2>
+            <div class="line"></div>
+            <div class="cart__item">
+               <div class="cart__img">
+                  
+               </div>
+               <div class="product__describe">
+                  <p name="nameProd" class="name">
+                     
+                  </p>
+                  <p class="price"></p>
+               </div>
+               
+            </div>
+            <button id="addToCart" type="button" class="btn">Купить</button>               
+         </div>
+      </div>
+   </div>
+
+   
+   
+   <script src="script.js"></script>
+</body>
+</html>

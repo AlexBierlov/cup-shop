@@ -1,0 +1,628 @@
+var arr = [];
+var userCount = 0;
+var userArray = [];
+var newUser;
+
+var userStorage = {};
+userStorage.users = [];
+
+var cups=[];
+function cup(img,name,color,type,price){
+   this.img=img,
+   this.name=name,
+   this.color=color,
+   this.type=type,
+   this.price=price;
+
+   this.show=function(){
+      var tmp = [];
+      tmp[0] = this.img;
+      tmp[1] = this.name;
+      tmp[2] = this.color;
+      tmp[3] = this.type;
+      tmp[4] = this.price;
+      console.log(tmp);
+      
+      return tmp;
+   }
+
+};
+
+// Открыть или закрыть попап
+
+function popClose(id) {
+   var popap;
+   popap = document.getElementById(id);
+   popap.style.display = "none";
+   a = false;
+   if (a !== true) {
+      var wrap = document.getElementById('wrap');
+      wrap.style.filter = 'none';
+   }
+}
+
+function popOpen(id) {
+   ifOpen();
+   ifOpen1();
+   var popap;
+   popap = document.getElementById(id);
+   popap.style.display = "block";
+   a = true;
+   if (a == true) {
+      var wrap = document.getElementById('wrap');
+      wrap.style.filter = 'blur(8px)';
+   }
+}
+
+
+// 
+function ifOpen() {
+   var popaps = document.getElementsByClassName('popap');
+   for (i = 0; i < popaps.length; i++) {
+      popaps[i].style.display = 'none';
+
+   }
+}
+
+function ifOpen1() {
+   var popaps = document.getElementsByClassName('product__card');
+   for (i = 0; i < popaps.length; i++) {
+      popaps[i].style.display = 'none';
+
+   }
+}
+
+function closeForm() {
+   var popap = document.getElementsByClassName('popap');
+   for (var i = 0; i < popap.length; i++) {
+      if (popap[i].style.display = 'block') {
+         popap[i].style.display = 'none';
+         wrap.style.filter = 'none';
+      }
+   }
+}
+
+
+// Добавление пользователей
+
+function addUser() {
+   var name = document.getElementById('regName');
+   var surname = document.getElementById('regSurname');
+   var mail = document.getElementById('regMail');
+   var photo = document.getElementById('output');
+   var pass = document.getElementById('regPass');
+   var repeatPass = document.getElementById('regPassRepeat');
+
+   var okName = validName(name.value);
+   var okSurname = validSurname(surname.value);
+   var okMail = validMail(mail.value);
+   var okPass = validPass(pass.value);
+   var okRepeatPass = validRepeatPass(pass.value, repeatPass.value);
+
+   if (okName == true && okSurname == true && okMail == true && okPass == true && okRepeatPass == true) {
+      newUser = new user(name.value, surname.value, mail.value, pass.value, photo.src, userCount);
+      var user0 = newUser.arrUser();
+      var userView = joinDate(user0);
+      
+      userArray.push(userView);
+      userStorage.users = userArray;
+      
+      userCount++;
+      saveUser();
+      clearRegForm();
+      closeForm();
+   }
+
+}
+
+
+function saveUser() {
+
+   localStorage.setItem("userStorage", JSON.stringify(userStorage.users));
+}
+
+function getUser() {
+   var users = localStorage.getItem("userStorage");
+   userArray = JSON.parse(users);
+   return userArray;
+}
+
+
+
+
+
+
+// Конструктор обьектов
+
+function user(name, surname, mail, pass, photo, idUser) {
+   this.name = name;
+   this.surname = surname;
+   this.mail = mail;
+   this.pass = pass;
+   this.photo = photo;
+   this.idUser = idUser;
+
+   this.arrUser = function arrUser() {
+      var tmp = [];
+      tmp[0] = this.name;
+      tmp[1] = this.surname;
+      tmp[2] = this.mail;
+      tmp[3] = this.pass;
+      tmp[4] = this.photo;
+      tmp[5] = this.idUser;
+      return tmp;
+   }
+}
+
+
+//Превращаем массив с пользовательскими данными в строку
+function joinDate(array) {
+   var str = array.join();
+   return str;
+}
+
+//очистка оформи
+
+function clearRegForm() {
+   var input = document.getElementsByName('reg__input');
+   for (var i = 0; i < input.length; i++) {
+      input[i].value = '';
+   }
+}
+
+function clearAuthForm() {
+   var input = document.getElementsByName('authInput');
+   for (var i = 0; i < input.length; i++) {
+      input[i].value = '';
+   }
+}
+
+
+// Проверка на валидацию
+
+function validName(name) {
+   var text = document.getElementsByName('pName')[0];
+   var p = /^\D{3}\D*$/gi;
+   var ok = false;
+
+   if (p.test(name)) {
+      text.style.color = 'green';
+      ok = true;
+   }
+   else {
+      text.style.color = 'red';
+   }
+   return ok;
+}
+
+function validSurname(surname) {
+   var text = document.getElementsByName('pSurname')[0];
+   var p = /^\D{3}\D*$/gi;
+   var ok = false;
+
+   if (p.test(surname)) {
+      text.style.color = 'green';
+      ok = true;
+   }
+   else {
+      text.style.color = 'red';
+   }
+   return ok;
+}
+
+function validMail(mail) {
+   var text = document.getElementsByName('pMail')[0];
+   var p = /^(\w+\.)*\w+@\w+(\.\w+)*\.\D{2,5}$/gi;
+   var ok = false;
+
+   if (p.test(mail)) {
+      text.style.color = 'green';
+      ok = true;
+   }
+   else {
+      text.style.color = 'red';
+   }
+   return ok;
+}
+
+function validMailAuth(mail) {
+   var text = document.getElementsByName('pMail1')[0];
+   var p = /^(\w+\.)*\w+@\w+(\.\w+)*\.\D{2,5}$/gi;
+   var ok = false;
+
+   if (p.test(mail)) {
+      text.style.color = 'green';
+      ok = true;
+   }
+   else {
+      text.style.color = 'red';
+   }
+   return ok;
+}
+
+function validPassAuth(pass) {
+   var text = document.getElementsByName('pPass1')[0];
+
+   var p = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])([0-9a-zA-Z!@#$%^&*].{5,16})$/g;
+   var ok = false;
+
+   if (p.test(pass)) {
+      text.style.color = 'green';
+      ok = true;
+   }
+   else {
+      text.style.color = 'red';
+   }
+
+   return ok;
+}
+
+
+
+function validPass(pass) {
+   var text = document.getElementsByName('pPass')[0];
+
+   var p = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])([0-9a-zA-Z!@#$%^&*].{5,16})$/g;
+   var ok = false;
+
+   if (p.test(pass)) {
+      text.style.color = 'green';
+      ok = true;
+   }
+   else {
+      text.style.color = 'red';
+   }
+
+   return ok;
+}
+
+function validRepeatPass(pass1, pass2) {
+   var ok = false;
+   var text = document.getElementsByName('pPassRepeat')[0];
+   if (pass1 == pass2) {
+      text.style.color = 'green';
+      ok = true;
+   }
+   else {
+      text.style.color = 'red';
+   }
+   return ok;
+}
+
+// Авторизация
+
+var regMass = [];
+function enter() {
+
+   var mail = document.getElementById('authMail');
+   var pass = document.getElementById('authPass');
+   var ok = false;
+
+
+   if (userArray.length >= 1) {
+      var okMail = validMailAuth(mail.value);
+      var okPass = validPassAuth(pass.value);
+      if (okMail == true && okPass == true) {
+
+         for (var i = 0; i <= userArray.length; i++) {
+            regMass = userArray[i].split(',');
+
+            if (regMass[2] == mail.value && regMass[3] == pass.value) {
+               
+
+               var src = regMass[4] + ',' + regMass[5];
+               profImg.src = src;
+               output1.src = src;
+
+               profName.innerHTML = regMass[0];
+               myName.innerHTML += "<p class='p__myname'>" + regMass[0] + "</p>";
+               mySurname.innerHTML += "<p class='p__myname'>" + regMass[1] + "</p>";
+               myMail.innerHTML += "<p class='p__myname'>" + regMass[2] + "</p>";
+               console.log('такой пользователь существует!');
+               clearAuthForm();
+               closeForm();
+               ok=true;
+
+               if(ok){
+                  document.getElementById('addCardNew').style.display='block';
+               }
+               return ok;
+
+            }
+            else {
+               console.log('совпадений нет!');
+            }
+         }
+      }
+   } else {
+      alert('Еще никто не зарегистрирован');
+   }
+
+}
+
+// 
+
+function deleteAuth() {
+   if (profName.innerHTML) {
+      var auth = document.getElementsByClassName('auth')[0];
+      var prof = document.getElementsByClassName('prof')[0];
+      auth.style.display = 'none';
+      prof.style.display = 'flex';
+   }
+}
+
+// exit
+
+function exit() {
+   var ok=true;
+   var auth = document.getElementsByClassName('auth')[0];
+   var prof = document.getElementsByClassName('prof')[0];
+   auth.style.display = 'block';
+   prof.style.display = 'none';
+   myName.innerHTML = 'Имя: ';
+   mySurname.innerHTML = 'Фамилия: ';
+   myMail.innerHTML = 'E-Mail: ';
+   ok=false;
+   if(ok==false){
+      document.getElementById('addCardNew').style.display='none';
+   }
+   return ok;
+}
+
+
+
+// Выбор фото
+
+fr.onchange = function (e) {
+   var input = e.target;
+   var reader = new FileReader();
+
+   reader.onload = function () {
+      var dataUrl = reader.result;
+      output.src = dataUrl;
+   }
+   reader.readAsDataURL(input.files[0]);
+}
+
+cp.onchange = function (e) {
+   var input = e.target;
+   var reader = new FileReader();
+
+   reader.onload = function () {
+      var dataUrl = reader.result;
+      output1.src = dataUrl;
+   }
+   reader.readAsDataURL(input.files[0]);
+}
+
+document.body.onload = getUser();
+// setTimeout
+document.body.onload = show;
+
+
+function show() {
+   var a = false;
+   var n = document.getElementById('auth');
+   var wrap = document.getElementById('wrap');
+   n.style.display = 'none';
+   setTimeout(function () {
+      a = true;
+      n.style.display = 'block';
+
+      wrap.style.filter = 'blur(8px)';
+   }, 10000)
+   var authMail = document.getElementById('authMail');
+   var authPass = document.getElementById('authPass');
+   setTimeout(function () {
+      if (authMail.value == '' && authPass.value == '') {
+         n.style.display = 'none';
+         wrap.style.filter = 'none';
+      }
+   }, 15000)
+}
+
+
+// mouseover
+
+var pic1 = document.getElementById('pic1');
+var item1 = document.getElementById('item1');
+
+function change1() {
+   pic1.src = 'img/cups/1.jpg';
+}
+function change2() {
+   pic1.src = 'img/cups/1-2.jpg';
+}
+pic1.onmouseover = change2;
+pic1.onmouseout = change1;
+
+
+// События onclick
+
+var prof = document.getElementsByClassName('prof')[0];
+prof.onclick = function () {
+   popOpen('prof');
+}
+
+cartWinOpen.onclick = function () {
+   popOpen('cart');
+   
+}
+
+enterAuth.onclick = function () {
+
+   popOpen('auth');
+}
+regAuth.onclick = function () {
+   popOpen('reg');
+}
+item1.onclick = function () {
+   popOpen('product1');
+}
+item2.onclick = function () {
+   popOpen('product2');
+}
+item3.onclick = function () {
+   popOpen('product3');
+}
+item4.onclick = function () {
+   popOpen('product4');
+}
+
+closeReg.onclick = function () {
+   popClose('reg');
+}
+addUserBtn.onclick = function () {
+   addUser();
+}
+regEnter.onclick = function () {
+   popOpen('auth');
+}
+authorizationClose.onclick = function () {
+   popClose('auth');
+}
+authBtn.onclick = function () {
+   enter();
+   deleteAuth();
+}
+authRegBtn.onclick = function () {
+   popOpen('reg');
+}
+addCardClose.onclick = function () {
+   popClose('addCard');
+}
+profileClose.onclick = function () {
+   popClose('prof');
+}
+product1Close.onclick = function () {
+   popClose('product1');
+}
+product2Close.onclick = function () {
+   popClose('product2');
+}
+product3Close.onclick = function () {
+   popClose('product3');
+}
+product4Close.onclick = function () {
+   popClose('product4');
+}
+cartClose.onclick = function () {
+   popClose('cart');
+}
+exitBtn.onclick = function () {
+   exit();
+   popClose('prof');
+}
+
+
+
+// Добавление товара в корзину
+
+var main = document.getElementsByClassName('main')[0];
+var counter1 = 0;
+var toCart = document.getElementsByClassName('addToCart')[0];
+
+main.onclick=function(e){
+   
+   counter1++;
+   prod=e.target;
+   prod.id='vibran';
+   img=vibran.closest('.main__item').children[0].src;
+   prodname=vibran.closest('.main__item').children[1].children[0].innerText;
+   prodPrice=vibran.closest('.main__item').children[1].children[1].innerText;
+   
+
+   var cartProd=document.createElement('div');
+   cartProd.className='cart__item';
+   var img2=document.createElement('img');
+   img2.src=img;
+   img2.className='cart__img';
+   var prodName2=document.createElement('p');
+   prodName2.className='name';
+   prodName2.innerText=prodname;
+   var prodprice2=document.createElement('p');
+   prodprice2.className='price';
+   prodprice2.innerText=prodPrice;
+   var imgDel=document.createElement('img');
+   imgDel.src="img/icons/cart.svg";
+   imgDel.className='del__prod';
+
+   
+
+   document.getElementById('cartInner').appendChild(cartProd);
+   document.getElementsByClassName('cart__item')[counter1].appendChild(img2);
+   document.getElementsByClassName('cart__item')[counter1].appendChild(prodName2);
+   document.getElementsByClassName('cart__item')[counter1].appendChild(prodprice2);
+   document.getElementsByClassName('cart__item')[counter1].appendChild(imgDel);
+
+   prod.id='';
+}
+
+// Удаление из корзины
+
+cartInner.onclick=function(e){
+   var prod = e.target.closest('.cart__item');
+   var f = document.getElementById('cartInner');
+   f.removeChild(prod);
+   counter1--;
+}
+
+// Добавление товара на страницу
+
+
+addCardNew.onclick = function () {
+   // popOpen('addCard');
+
+   var win=open('','_blank');
+   win.document.open();
+   win.document.write('<html><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0">  <link rel="stylesheet" href="style.css"><title>WIN</title></head><body><h1 class="title">Добавление товара</h1><img id="winAddImg" class="win__img"  src="" alt=""><input type="file" id="winButtonApi" ><p>Введите название товара</p><input type="text" id="winName"><p>Введите цвет товара</p>   <input type="text" id="winColor"><p>Введите материал товара</p><input type="text" id="winMatt"><p>Введите цену товара</p>   <input type="text" id="winPrice"><input type="submit" id="adddCup" value="Добавить"></body></html>');
+
+   
+   var buttonapi=win.document.getElementById('winButtonApi').onchange = function(e){
+      var input = event.target;
+      var reader = new FileReader();
+   
+      reader.onload = function(){
+         var dataUrl = reader.result;
+         var output=win.document.getElementById('winAddImg');
+         output.src = dataUrl;
+      }
+      reader.readAsDataURL(input.files[0]);
+   };
+
+   var cupaddd=win.document.getElementById('adddCup');
+   cupaddd.onclick=function(){
+      
+      newCup=new cup(win.winAddImg.src,win.winName.value,win.winColor.value,win.winMatt.value,win.winPrice.value).show();
+      cups.push(newCup);
+      
+      cpprint();
+      
+      win.self.close();
+      localStorage.cp=JSON.stringify(cups);
+   } 
+   
+}
+
+function cpprint(){
+   var str='';
+   for(var i=0; i<cups.length; i++){
+      str='<div class="main__item"><img src="'+newCup[0]+'" alt="" class="main__img"><div class="item__describe"><div class="item__name">'+newCup[1]+'</div><div class="item__price">'+newCup[4]+'</div><button name="addToCart" class="btn" type="button">В корзину</button></div><input class="btn" name="del" type="button" id="" value="delete"></div>'
+      
+      
+   };
+   mainInner.innerHTML+=str;
+   
+}
+
+document.onclick=function(e){
+   var t=e.target;
+   
+   if(t.name=='del'){
+      
+      t.closest('.main__item').style.display='none';
+   }
+}
+
+
+
