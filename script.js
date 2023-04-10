@@ -458,18 +458,7 @@ enterAuth.onclick = function () {
 regAuth.onclick = function () {
    popOpen('reg');
 }
-// item1.onclick = function () {
-//    popOpen('product1');
-// }
-// item2.onclick = function () {
-//    popOpen('product2');
-// }
-// item3.onclick = function () {
-//    popOpen('product3');
-// }
-// item4.onclick = function () {
-//    popOpen('product4');
-// }
+
 
 closeReg.onclick = function () {
    popClose('reg');
