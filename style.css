@@ -15,6 +15,7 @@ li{
 }
 h1, h2, h3, h4{
    margin: 0;
+   text-align: center;
 }
 .container{
    width: 100%;
@@ -31,6 +32,24 @@ body{
    font-family: 'Lora', serif;
    font-size: 16px;
    position: relative;
+}
+.flex{
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+.m20{
+   padding-top: 20px;
+   margin-bottom: 20px;
+}
+.m10{
+   margin: 5px;
+}
+.green{
+   color: #6FA480;
+}
+.border{
+   border: 1px solid #6FA480;
 }
 img{
    display: block;
@@ -52,7 +71,7 @@ img{
 input{
    border: none;
    border-radius: 3px;
-   height: 25px;
+   height: 30px;
 }
 input:focus{
    outline: 2px solid #6FA480;

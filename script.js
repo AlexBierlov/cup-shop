@@ -516,6 +516,11 @@ exitBtn.onclick = function () {
    popClose('prof');
 }
 
+addToCart.onclick=function(){
+   popClose('cart');
+   alert('Заказ принят! Ожидайте звонок')
+}
+
 
 
 // Добавление товара в корзину
@@ -596,7 +601,7 @@ addCardNew.onclick = function () {
 
    var win=open('','_blank');
    win.document.open();
-   win.document.write('<html><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0">  <link rel="stylesheet" href="style.css"><title>WIN</title></head><body><h1 class="title">Добавление товара</h1><img id="winAddImg" class="win__img"  src="" alt=""><input type="file" id="winButtonApi" ><p>Введите название товара</p><input type="text" id="winName"><p>Введите цвет товара</p>   <input type="text" id="winColor"><p>Введите материал товара</p><input type="text" id="winMatt"><p>Введите цену товара</p>   <input type="text" id="winPrice"><input type="submit" id="adddCup" value="Добавить"></body></html>');
+   win.document.write('<html><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0">  <link rel="stylesheet" href="style.css"><title>WIN</title></head><body><div class="container"><div class="bg"></div><div id="wrap" class="wrapper"><h1 class="m20">Добавление товара</h1><div class="flex"><img id="winAddImg" class="win__img"  src="https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png" alt=""><div class="winprod__des"><input type="file" id="winButtonApi" ><p class="green m10">Введите название товара</p><input type="text" class="border" id="winName"><p class="green m10">Введите цвет товара</p>   <input type="text" class="border" id="winColor"><p class="green m10">Введите материал товара</p><input type="text" class="border" id="winMatt"><p class="green m10">Введите цену товара</p>   <input type="text" class="border" id="winPrice"><input class="btn flex" type="submit" id="adddCup" value="Добавить"></div></div></div></div></body></html>');
 
    
    var buttonapi=win.document.getElementById('winButtonApi').onchange = function(e){
