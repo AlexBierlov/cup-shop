@@ -76,6 +76,20 @@ input:focus{
    display: flex;
    align-items: center;
 }
+.counter{
+   width: 20px;
+   height: 20px;
+   background-color: orange;
+   border-radius: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: white;
+
+   position: absolute;
+   top: -5px;
+   right: -5px;
+}
 .prof{
    display: flex;
    flex-direction: column;
@@ -381,6 +395,7 @@ form a:hover{
 }
 .cart{
    cursor: pointer;
+   position: relative;
 }
 
 .cart__item{

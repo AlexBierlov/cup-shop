@@ -325,6 +325,7 @@ function enter() {
 
                if(ok){
                   document.getElementById('addCardNew').style.display='block';
+                  
                }
                return ok;
 
@@ -365,6 +366,7 @@ function exit() {
    ok=false;
    if(ok==false){
       document.getElementById('addCardNew').style.display='none';
+      
    }
    return ok;
 }
@@ -456,18 +458,18 @@ enterAuth.onclick = function () {
 regAuth.onclick = function () {
    popOpen('reg');
 }
-item1.onclick = function () {
-   popOpen('product1');
-}
-item2.onclick = function () {
-   popOpen('product2');
-}
-item3.onclick = function () {
-   popOpen('product3');
-}
-item4.onclick = function () {
-   popOpen('product4');
-}
+// item1.onclick = function () {
+//    popOpen('product1');
+// }
+// item2.onclick = function () {
+//    popOpen('product2');
+// }
+// item3.onclick = function () {
+//    popOpen('product3');
+// }
+// item4.onclick = function () {
+//    popOpen('product4');
+// }
 
 closeReg.onclick = function () {
    popClose('reg');
@@ -521,39 +523,55 @@ exitBtn.onclick = function () {
 var main = document.getElementsByClassName('main')[0];
 var counter1 = 0;
 var toCart = document.getElementsByClassName('addToCart')[0];
-
+var cartCounter1=document.getElementsByClassName('counter')[0];
+onload=function(){
+   cartCounter1.innerText=counter1;
+   if(counter1===0){
+      document.getElementsByClassName('counter')[0].style.backgroundColor='green';}
+}
+if(cartCounter1.innerText==='0'){
+   cartCounter1.style.backgroundColor='green';
+}
 main.onclick=function(e){
    
-   counter1++;
+   
    prod=e.target;
-   prod.id='vibran';
-   img=vibran.closest('.main__item').children[0].src;
-   prodname=vibran.closest('.main__item').children[1].children[0].innerText;
-   prodPrice=vibran.closest('.main__item').children[1].children[1].innerText;
-   
+   if(prod.name=='addToCart'){
+      counter1++;
+      
+      cartCounter1.innerText=counter1;
+      
+      prod.id='vibran';
+      img=vibran.closest('.main__item').children[0].src;
+      prodname=vibran.closest('.main__item').children[1].children[0].innerText;
+      prodPrice=vibran.closest('.main__item').children[1].children[1].innerText;
+      
 
-   var cartProd=document.createElement('div');
-   cartProd.className='cart__item';
-   var img2=document.createElement('img');
-   img2.src=img;
-   img2.className='cart__img';
-   var prodName2=document.createElement('p');
-   prodName2.className='name';
-   prodName2.innerText=prodname;
-   var prodprice2=document.createElement('p');
-   prodprice2.className='price';
-   prodprice2.innerText=prodPrice;
-   var imgDel=document.createElement('img');
-   imgDel.src="img/icons/cart.svg";
-   imgDel.className='del__prod';
+      var cartProd=document.createElement('div');
+      cartProd.className='cart__item';
+      var img2=document.createElement('img');
+      img2.src=img;
+      img2.className='cart__img';
+      var prodName2=document.createElement('p');
+      prodName2.className='name';
+      prodName2.innerText=prodname;
+      var prodprice2=document.createElement('p');
+      prodprice2.className='price';
+      prodprice2.innerText=prodPrice;
+      var imgDel=document.createElement('img');
+      imgDel.src="img/icons/cart.svg";
+      imgDel.className='del__prod';
 
-   
+      
 
-   document.getElementById('cartInner').appendChild(cartProd);
-   document.getElementsByClassName('cart__item')[counter1].appendChild(img2);
-   document.getElementsByClassName('cart__item')[counter1].appendChild(prodName2);
-   document.getElementsByClassName('cart__item')[counter1].appendChild(prodprice2);
-   document.getElementsByClassName('cart__item')[counter1].appendChild(imgDel);
+      document.getElementById('cartInner').appendChild(cartProd);
+      document.getElementsByClassName('cart__item')[counter1].appendChild(img2);
+      document.getElementsByClassName('cart__item')[counter1].appendChild(prodName2);
+      document.getElementsByClassName('cart__item')[counter1].appendChild(prodprice2);
+      document.getElementsByClassName('cart__item')[counter1].appendChild(imgDel);
+   }
+   if(counter1>0){
+      document.getElementsByClassName('counter')[0].style.backgroundColor='orange';}
 
    prod.id='';
 }
@@ -565,6 +583,9 @@ cartInner.onclick=function(e){
    var f = document.getElementById('cartInner');
    f.removeChild(prod);
    counter1--;
+   cartCounter1.innerText=counter1;
+   if(counter1<1){
+      document.getElementsByClassName('counter')[0].style.backgroundColor='green';}
 }
 
 // Добавление товара на страницу
@@ -607,7 +628,7 @@ addCardNew.onclick = function () {
 function cpprint(){
    var str='';
    for(var i=0; i<cups.length; i++){
-      str='<div class="main__item"><img src="'+newCup[0]+'" alt="" class="main__img"><div class="item__describe"><div class="item__name">'+newCup[1]+'</div><div class="item__price">'+newCup[4]+'</div><button name="addToCart" class="btn" type="button">В корзину</button></div><input class="btn" name="del" type="button" id="" value="delete"></div>'
+      str='<div class="main__item"><img src="'+newCup[0]+'" alt="" class="main__img"><div class="item__describe"><div class="item__name">'+newCup[1]+'</div><div class="item__price">'+newCup[4]+'</div></div><button name="addToCart" class="btn to__cart" type="button">В корзину</button><input class="btn to__cart" name="del" type="button" id="" value="delete"></div>'
       
       
    };
