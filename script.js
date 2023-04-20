@@ -1,6 +1,6 @@
 var arr = [];
 var userCount = 0;
-var userArray = [];
+// var userArray = [];
 var newUser;
 
 var userStorage = {};
@@ -68,7 +68,6 @@ function ifOpen1() {
    var popaps = document.getElementsByClassName('product__card');
    for (i = 0; i < popaps.length; i++) {
       popaps[i].style.display = 'none';
-
    }
 }
 
@@ -105,6 +104,7 @@ function addUser() {
       var userView = joinDate(user0);
       
       userArray.push(userView);
+      
       userStorage.users = userArray;
       
       userCount++;
@@ -548,10 +548,10 @@ main.onclick=function(e){
       img2.className='cart__img';
       var prodName2=document.createElement('p');
       prodName2.className='name';
-      prodName2.innerText=prodname;
+      prodName2.innerText=' '+prodname;
       var prodprice2=document.createElement('p');
       prodprice2.className='price';
-      prodprice2.innerText=prodPrice;
+      prodprice2.innerText=' '+prodPrice;
       var imgDel=document.createElement('img');
       imgDel.src="img/icons/cart.svg";
       imgDel.className='del__prod';
