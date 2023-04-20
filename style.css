@@ -23,6 +23,9 @@ h1, h2, h3, h4{
    margin: 0 auto;
    padding: 0 15px;
 }
+.container.small{
+   max-width: 800px;
+}
 body,html{
    height: 100%;
    width: 100%;
@@ -32,6 +35,7 @@ body{
    font-family: 'Lora', serif;
    font-size: 16px;
    position: relative;
+   
 }
 .flex{
    display: flex;
@@ -62,6 +66,7 @@ img{
    width: 100%;
    height: 100%;
    background-image: url(img/bg.jpg);
+   background-size: 40%;
    opacity: .1;
 }
 .wrapper{
@@ -69,6 +74,7 @@ img{
 }
 
 input{
+   width: 100%;
    border: none;
    border-radius: 3px;
    height: 30px;
@@ -181,7 +187,7 @@ input:focus{
 }
 .item__describe{
    position: relative;
-   
+   text-align: center;
    bottom: 0;
    margin-bottom: 10px;
 }
@@ -202,21 +208,26 @@ input:focus{
 /* btn */
 
 .btn{
+   width: 100%;
    border-radius: 5px;
    margin: 5px 0;
    text-transform: uppercase;
    border: none;
-   background-color: #6FA480;
-   color: white;
+   
+   
    padding: 8px 20px;
    cursor: pointer;
    text-align: center;
    font-size: 12px;
    font-weight: bold;
    transition: .1s linear;
+   border: 1px solid gray;
+   color: rgb(236, 206, 127);
 }
 .btn:hover{
-   color: rgb(236, 206, 127);
+   color: white;
+   background-color: #6FA480;
+   border-color: #6FA480;
 }
 
 .to__cart{
@@ -271,17 +282,20 @@ form a:hover{
 }
 .form__p{
    font-size: 12px;
+   text-align: center;
+   font-style: italic;
 }
 .form__name{
+   font-style: italic;
    text-align: center;
    margin-bottom: 15px;
 }
 .form__item{
    margin-bottom: 5px;
 }
-.form__item:last-child{
+/* .form__item:last-child{
    margin-bottom: 15px;
-}
+} */
 .foot{
    margin-top: 15px;
 }
@@ -361,7 +375,7 @@ form a:hover{
 .popap{
    display: none;
    position: absolute;
-   top: 50%;
+   top: 55%;
    left: 50%;
    transform: translate(-50%, -50%);
 }
@@ -369,7 +383,7 @@ form a:hover{
 
 
 .reg__img{
-   max-width: 200px;
+   max-width: 150px;
 }
 
 
@@ -402,8 +416,10 @@ form a:hover{
 }
 #addToCart{
    position: absolute;
-   bottom: 10px;
-   right: 10px;
+   bottom: 0;
+   left: 50%;
+   transform: translateX(-50%);
+   width: 90%;
 
 }
 
@@ -419,6 +435,8 @@ form a:hover{
 
 .cart__item{
    display: flex;
+   justify-content: space-between;
+   align-items: center;
    margin: 20px 0;
 }
 .cart__img{
@@ -431,6 +449,13 @@ form a:hover{
    height: auto;
    padding: 5px;
    cursor: pointer;
+   border: 1px solid gray;
+   border-radius: 5px;
+   transition: .2s linear;
+}
+.del__prod:hover{
+   background-color: #6FA480;
+   border-color: #6FA480;
 }
 
 
