@@ -1,6 +1,6 @@
 var arr = [];
 var userCount = 0;
-// var userArray = [];
+var userArray = [];
 var newUser;
 
 var userStorage = {};
@@ -122,9 +122,12 @@ function saveUser() {
 }
 
 function getUser() {
-   var users = localStorage.getItem("userStorage");
-   userArray = JSON.parse(users);
-   return userArray;
+   if(localStorage.getItem("userStorage")){
+      var users = localStorage.getItem("userStorage");
+      userArray = JSON.parse(users);
+      return userArray;
+   }
+   
 }
 
 
