@@ -110,7 +110,7 @@ function addUser() {
       userCount++;
       saveUser();
       clearRegForm();
-      closeForm();
+      alert('Вы успешно зарегистрировались!');      
    }
 
 }
@@ -333,8 +333,10 @@ function enter() {
                return ok;
 
             }
-            else {
-               console.log('совпадений нет!');
+            else if(i==userArray.length-1 && regMass[2] !== mail.value && regMass[3] !== pass.value) {
+               console.log('Пользователь с таким Email не зарегистрирован');
+               document.getElementsByName('pPass1')[0].innerHTML += '<br><p class="red">Пользователь с таким Email не зарегистрирован!</p>';
+
             }
          }
       }
@@ -455,9 +457,11 @@ cartWinOpen.onclick = function () {
 }
 
 enterAuth.onclick = function () {
-
+   document.getElementsByName('pPass1')[0].innerText='Латинскі літери та цифри, min одна цифра, min одна  велика літера, min 6 символів';
    popOpen('auth');
 }
+
+
 regAuth.onclick = function () {
    popOpen('reg');
 }
@@ -468,6 +472,7 @@ closeReg.onclick = function () {
 }
 addUserBtn.onclick = function () {
    addUser();
+   closeForm();
 }
 regEnter.onclick = function () {
    popOpen('auth');
@@ -509,10 +514,20 @@ exitBtn.onclick = function () {
 }
 
 addToCart.onclick=function(){
-   popClose('cart');
-   alert('Заказ принят! Ожидайте звонок')
+   ifProdInCart();
+   popClose('cart');   
 }
 
+// проверка наличия товара в корзине
+
+function ifProdInCart(){
+   var cartImg=document.getElementsByClassName('cart__img');
+   if(cartImg.length>1){
+      alert('Ваш заказ принят! Ожидайте звонка оператора');
+   } else {
+      alert('Вы еще не добавили товар');
+   }
+}
 
 
 // Добавление товара в корзину
