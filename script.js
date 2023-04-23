@@ -330,6 +330,7 @@ function enter() {
                   document.getElementById('addCardNew').style.display='block';
                   
                }
+               localStorage.prof=JSON.stringify(regMass);
                return ok;
 
             }
@@ -373,6 +374,10 @@ function exit() {
       document.getElementById('addCardNew').style.display='none';
       
    }
+
+   localStorage.removeItem('prof');
+
+   
    return ok;
 }
 
@@ -402,7 +407,51 @@ cp.onchange = function (e) {
    reader.readAsDataURL(input.files[0]);
 }
 
+document.body.onload = getUserLocal();
+
 document.body.onload = getUser();
+
+// Загрузка профиля и чашек из localStorage
+
+function getUserLocal(){
+   if(localStorage.prof !== undefined){
+      deleteAuth();
+      console.log("work");
+      tempUs = localStorage.getItem("prof");
+      profile = JSON.parse(tempUs);
+      cupss = JSON.parse(localStorage.getItem('cp'));
+      
+      mail = profile[2];
+      pass = profile[3];
+
+      var ok = false;
+      var src = profile[4] + ',' + profile[5];
+      profImg.src = src;
+      output1.src = src;
+      profName.innerHTML = profile[0];
+      myName.innerHTML += "<p class='p__myname'>" + profile[0] + "</p>";
+      mySurname.innerHTML += "<p class='p__myname'>" + profile[1] + "</p>";
+      myMail.innerHTML += "<p class='p__myname'>" + profile[2] + "</p>";
+      ok=true;
+      if(ok){
+         document.getElementById('addCardNew').style.display='block';
+      }
+
+      // var tempMass=[];
+      // for(var i=0; i<cupss.length; i++){
+      //    console.log(cupss[i]);
+      //    var str='';
+      //    tempMass = cupss[i];
+      //    for(var j=0; j<cupss[i].length; j++){
+      //       str='<div class="main__item"><img src="'+tempMass[0]+'" alt="" class="main__img"><div class="item__describe"><div class="item__name">'+tempMass[1]+'</div><div class="item__price">'+tempMass[4]+'</div></div><button name="addToCart" class="btn to__cart" type="button">В корзину</button><input class="btn to__cart" name="del" type="button" id="" value="delete"></div>'
+      //    }
+      //    mainInner.innerHTML+=str;
+      // }
+
+      return ok;
+   }
+} 
+   
 // setTimeout
 document.body.onload = show;
 
@@ -654,6 +703,7 @@ document.onclick=function(e){
    if(t.name=='del'){
       
       t.closest('.main__item').style.display='none';
+
    }
 }
 
