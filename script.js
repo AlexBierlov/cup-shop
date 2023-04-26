@@ -437,19 +437,14 @@ function getUserLocal(){
          document.getElementById('addCardNew').style.display='block';
       }
 
-      // var tempMass=[];
-      // for(var i=0; i<cupss.length; i++){
-      //    console.log(cupss[i]);
-      //    var str='';
-      //    tempMass = cupss[i];
-      //    for(var j=0; j<cupss[i].length; j++){
-      //       str='<div class="main__item"><img src="'+tempMass[0]+'" alt="" class="main__img"><div class="item__describe"><div class="item__name">'+tempMass[1]+'</div><div class="item__price">'+tempMass[4]+'</div></div><button name="addToCart" class="btn to__cart" type="button">В корзину</button><input class="btn to__cart" name="del" type="button" id="" value="delete"></div>'
-      //    }
-      //    mainInner.innerHTML+=str;
-      // }
-
+      if(localStorage.main){
+         mainInner.innerHTML=JSON.parse(localStorage.main);
+      }
+      
+      
       return ok;
    }
+   
 } 
    
 // setTimeout
@@ -564,7 +559,7 @@ exitBtn.onclick = function () {
 
 addToCart.onclick=function(){
    ifProdInCart();
-   popClose('cart');   
+   popClose('cart');      
 }
 
 // проверка наличия товара в корзине
@@ -582,7 +577,10 @@ function ifProdInCart(){
 // Добавление товара в корзину
 
 var main = document.getElementsByClassName('main')[0];
+
 var counter1 = 0;
+
+
 var toCart = document.getElementsByClassName('addToCart')[0];
 var cartCounter1=document.getElementsByClassName('counter')[0];
 onload=function(){
@@ -635,6 +633,7 @@ main.onclick=function(e){
       document.getElementsByClassName('counter')[0].style.backgroundColor='orange';}
 
    prod.id='';
+   
 }
 
 // Удаление из корзины
@@ -643,10 +642,12 @@ cartInner.onclick=function(e){
    var prod = e.target.closest('.cart__item');
    var f = document.getElementById('cartInner');
    f.removeChild(prod);
+   
    counter1--;
    cartCounter1.innerText=counter1;
    if(counter1<1){
       document.getElementsByClassName('counter')[0].style.backgroundColor='green';}
+   
 }
 
 // Добавление товара на страницу
@@ -682,6 +683,7 @@ addCardNew.onclick = function () {
       
       win.self.close();
       localStorage.cp=JSON.stringify(cups);
+      localStorage.main=JSON.stringify(mainInner.innerHTML);
    } 
    
 }
@@ -704,8 +706,11 @@ document.onclick=function(e){
       
       t.closest('.main__item').style.display='none';
 
+      localStorage.main=JSON.stringify(mainInner.innerHTML);
    }
 }
+
+
 
 // redact
 
